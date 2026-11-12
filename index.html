@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebGL2 骨骼动画管线 Demo</title>
+    <style>
+      html, body {
+        margin: 0;
+        height: 100%;
+        background: #10141c;
+        color: #e6e9ef;
+        font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+        overflow: hidden;
+      }
+      #app { display: flex; height: 100%; }
+      #gl-canvas { flex: 1; display: block; }
+      #panel {
+        width: 280px;
+        box-sizing: border-box;
+        padding: 16px;
+        background: #171c26;
+        border-left: 1px solid #2a3242;
+        overflow-y: auto;
+        font-size: 13px;
+        line-height: 1.5;
+      }
+      #panel h2 { font-size: 15px; margin: 0 0 12px; }
+      #panel button {
+        width: 100%;
+        margin: 4px 0;
+        padding: 8px;
+        background: #243049;
+        color: #e6e9ef;
+        border: 1px solid #3a4a6b;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 13px;
+      }
+      #panel button:hover { background: #2e3d5c; }
+      #panel label { display: block; margin: 10px 0 4px; color: #9fb0cc; }
+      #panel input[type="range"] { width: 100%; }
+      #panel pre {
+        background: #0d1119;
+        border: 1px solid #2a3242;
+        border-radius: 6px;
+        padding: 8px;
+        font-size: 11px;
+        white-space: pre-wrap;
+        word-break: break-all;
+        max-height: 260px;
+        overflow-y: auto;
+      }
+      .muted { color: #8293ad; }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="gl-canvas"></canvas>
+      <div id="panel">
+        <h2>骨骼动画控制</h2>
+        <button id="btn-idle">切换 idle（待机）</button>
+        <button id="btn-walk">切换 walk（行走）</button>
+        <label>Crossfade 时长（秒）：<span id="fade-val">0.60</span></label>
+        <input id="fade" type="range" min="0.05" max="2" step="0.05" value="0.6" />
+        <label class="muted">强制 uniform 向量预算（模拟低端 GPU 分批降级）</label>
+        <input id="force-limit" type="checkbox" />
+        <button id="btn-selftest">在控制台运行自测（F12）</button>
+        <pre id="info">初始化中…</pre>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
